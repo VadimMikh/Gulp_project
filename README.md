@@ -1,1 +1,1 @@
-"# Gulp_project" scaf
+"# Gulp_project" scaffolding
