@@ -112,6 +112,11 @@ gulp.task('pagebuilder', function () {
 		.pipe(htmlhint.reporter());
 });
 
+gulp.task('html-watch', ['pagebuilder'], function (done) {
+    browserSync.reload();
+    done();
+});
+
 gulp.task('sprites', function () {
 	var spriteData =
 		gulp.src('./app/icons/*.*')
@@ -146,7 +151,7 @@ gulp.task('babel', function () {
 
 gulp.task('scripts', function () {
 	return gulp.src([
-		'app/libs/jquery/dist/jquery.min.js'
+		'app/libs/jquery/dist/jquery.min.js',
 	])
 		.pipe(concat('jquery.min.js'))
 		.pipe(uglify({
@@ -183,12 +188,11 @@ gulp.task('css-libs', ['sass'], function () {
 gulp.task('watch', ['browser-sync', 'svgstore', 'pagebuilder', 'sprites', 'css-libs', 'scripts'], function () {
 	gulp.watch('app/icons/svg/*.svg', ['svgstore']);
 	gulp.watch('app/scss/**/*.scss', ['sass']);
-	gulp.watch('app/*.html', browserSync.reload);
 	gulp.watch('app/js/es6/*.js', ['babel']);
 	gulp.watch('app/libs/**/*.js', ['scripts']);
-	gulp.watch('app/icons/*.*', ['sprites'], browserSync.reload);
-	gulp.watch('app/modules/**/*.html', ['pagebuilder'], browserSync.reload);
-	gulp.watch('app/pages/*.html', ['pagebuilder'], browserSync.reload);
+	gulp.watch('app/icons/*.*', ['sprites']);
+	gulp.watch('app/modules/**/*.html', ['pagebuilder']);
+	gulp.watch('app/pages/*.html', ['html-watch']);
 });
 
 gulp.task('clean', function () {
