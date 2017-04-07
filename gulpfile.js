@@ -191,7 +191,7 @@ gulp.task('watch', ['browser-sync', 'svgstore', 'pagebuilder', 'sprites', 'css-l
 	gulp.watch('app/js/es6/*.js', ['babel']);
 	gulp.watch('app/libs/**/*.js', ['scripts']);
 	gulp.watch('app/icons/*.*', ['sprites']);
-	gulp.watch('app/modules/**/*.html', ['pagebuilder']);
+	gulp.watch('app/modules/**/*.html', ['html-watch']);
 	gulp.watch('app/pages/*.html', ['html-watch']);
 });
 
