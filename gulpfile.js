@@ -221,7 +221,7 @@ gulp.task('build', ['clean', 'sprites', 'img', 'sass', 'babel', 'scripts'], func
 	var buildFonts = gulp.src('app/fonts/**/*')
 		.pipe(gulp.dest('build/fonts'));
 
-	var buildJs = gulp.src('app/js/**/*')
+	var buildJs = gulp.src('app/js/*.js')
 		.pipe(gulp.dest('build/js'));
 
 	var buildHtml = gulp.src('app/*.html')
